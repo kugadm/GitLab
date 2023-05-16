@@ -1,0 +1,40 @@
+---
+
+
+- name: Install nginx packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "{{ apt_packages }}"
+  tags: nginx 
+
+- name: Setup nginx location
+  template:
+    src=nginx.tpl
+    dest={{ nginx_path }}/{{ conf_file }}
+  # vars:
+  #    nginx_path: /etc/nginx
+  #    nginx_sites: {{ nginx_path }}/sites-available
+  #  tasks:
+  #    - name: Setup nginx vhost
+  #      template:
+  #        src=yoursite.com.conf.tpl
+  #        dest={{ nginx_sites }}/yoursite.com.conf
+  #    - name: Setup nginx conf
+  #      template:
+  #        src=nginx.conf.tpl
+  #        dest={{ nginx_path }}/nginx.conf
+  #      notify: restart nginx
+  #  handlers:
+  #    - name: restart nginx
+  #      service:
+  #        name=nginx
+  #        state=restarted  
+  #
+  #        server {
+  #        - name: Setup nginx vhost
+  #    template:
+  #      src=nginx.tpl
+  #      dest={{ nginx_sites }}/{{ conf_file }}.conf

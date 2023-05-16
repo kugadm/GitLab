@@ -1,0 +1,19 @@
+---
+# defaults file for deploy__app
+host_ip: 192.168.121.23
+apt_packages:
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - python3-pip
+    - docker.io
+pip_packages:
+    - docker
+    - jsondiff
+deploy_app_image: gukadm/app     
+deploy_app_version: v01
+deploy_nginx_image: kug999/nginx:v1.1
+app_ports: "5000:5000"
+app_test: curl -f http://localhost:5000
+export_FLASK_APP: FLASK_APP=app.py
+export_POSTGRESQL: POSTGRESQL_URL=postgresql://worker:worker@{{ host_ip }}/app

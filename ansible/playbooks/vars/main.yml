@@ -1,0 +1,19 @@
+gitlab_runner_registration_token: 'GR1348941embwjypRmTN132s2sMxD'
+gitlab_runner_runners:
+  - name: 'Example Docker GitLab Runner'
+    # token is an optional override to the global gitlab_runner_registration_token
+    token: 'GR1348941embwjypRmTN132s2sMxD' 
+    executor: docker
+    docker_image: 'alpine'
+    tags:
+      - dev-docker
+      - prod-docker
+    docker_volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/cache"
+    extra_configs:
+      runners.docker:
+        memory: 512m
+        #        allowed_images: ["ruby:*", "python:*", "php:*"]
+      runners.docker.sysctls:
+        net.ipv4.ip_forward: "1"

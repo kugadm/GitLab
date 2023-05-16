@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+    - debug:
+        var: hostvars['localhost'].inventory_hostname 
+    - debug:
+        var: ansible_hostname  
+

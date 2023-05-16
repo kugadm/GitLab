@@ -1,0 +1,26 @@
+
+---
+all:
+  vars:
+#    ansible_user: vagrant
+     ansible_user: root
+#     ansible_user: ubuntu
+
+  hosts:
+    app-back:
+#      ansible_host: 192.168.121.55
+      ansible_host: 192.168.0.79
+#       ansible_host: 51.250.100.25
+#      ansible_ssh_private_key_file: /root/vagrant/.vagrant/machines/node22psql/libvirt/private_key
+#      ansible_ssh_private_key_file: /root/vagrant/.vagrant/machines/node/libvirt/private_key
+#      ansible_ssh_private_key_file: /home/private_key
+      ansible_ssh_private_key_file: /root/.ssh/id_rsa
+#      ansible_ssh_private_key_file: /home/ubuntu/id_rsa
+
+  children:
+    backend:
+      hosts:
+#        app-back:
+    docker:
+      hosts:
+#        app-back:

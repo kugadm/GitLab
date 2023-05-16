@@ -1,0 +1,26 @@
+---
+
+postgresql_version: "14"
+postgresql_config: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+postgresql_hba_config: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+postgresql_insert_config: 'Connection Settings'
+postgresql_insert_hba_config: "# TYPE"
+postgresql_line_config: "listen_addresses = '*'"
+postgresql_line_hba_config: "host all all 0.0.0.0/0 md5"
+postgresql_daemon: postgresql
+postgresql_service_state: started
+postgresql_service_restart: restarted
+postgresql_service_enabled: true
+postgresql_packages:
+  - postgresql-{{ postgresql_version }}
+  - postgresql-contrib-{{ postgresql_version }}
+  - libpq-dev
+  - python3-psycopg2
+postgresql_user: postgres
+postgresql_group: postgres    
+db_user: worker
+db_password: worker
+db_owner: worker
+db_name: app
+db_objs: ALL_IN_SCHEMA
+db_privs: SELECT,INSERT,UPDATE,DELETE

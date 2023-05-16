@@ -1,0 +1,9 @@
+
+---
+- name: deploy_nginx
+  hosts: app-back
+  become: yes
+  gather_facts: false
+
+  roles:
+    - { role: roles/deploy_nginx }
